@@ -1,12 +1,12 @@
 Summary:	NVMe management command line interface
 Summary(pl.UTF-8):	Konsolowy interfejs do zarządzania NVMe
 Name:		nvme-cli
-Version:	1.4
+Version:	1.7
 Release:	1
 License:	GPL v2+
 Group:		Applications
 Source0:	https://github.com/linux-nvme/nvme-cli/archive/v%{version}.tar.gz
-# Source0-md5:	d3b43b7a8b7387ac4b52a9e1a44fba75
+# Source0-md5:	ec64bc935957f6bc52109bde704a5a42
 URL:		https://github.com/linux-nvme/nvme-cli
 BuildRequires:	libuuid-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -33,6 +33,21 @@ bash-completion for nvme-cli.
 %description -n bash-completion-nvme-cli -l pl.UTF-8
 Bashowe dopełnianie składni dla nvme-cli.
 
+%package -n zsh-completion-nvme-cli
+Summary:	zsh-completion for nvme-cli
+Summary(pl.UTF-8):	Dopełnianie składni w zsh dla nvme-cli
+Group:		Applications/Shells
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
+
+%description -n zsh-completion-nvme-cli
+zsh-completion for nvme-cli.
+
+%description -n zsh-completion-nvme-cli -l pl.UTF-8
+Dopełnianie składni w zsh dla nvme-cli.
+
 %prep
 %setup -q
 
@@ -40,7 +55,7 @@ Bashowe dopełnianie składni dla nvme-cli.
 
 PREFIX=%{_prefix} \
 LDFLAGS="${LDFLAGS:-%rpmldflags}" \
-CFLAGS="${CFLAGS:-%rpmcflags}" \
+CFLAGS="${CFLAGS:-%rpmcflags} -I." \
 CXXFLAGS="${CXXFLAGS:-%rpmcxxflags}" \
 CPPFLAGS="${CPPFLAGS:-%rpmcppflags}" \
 %{?__cc:CC="%{__cc}"} \
@@ -54,9 +69,6 @@ rm -rf $RPM_BUILD_ROOT
 	PREFIX=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/%{bash_compdir}
-mv $RPM_BUILD_ROOT/{%{_datadir}/bash_completion.d/nvme,%{bash_compdir}}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -69,3 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n bash-completion-nvme-cli
 %defattr(644,root,root,755)
 %{bash_compdir}/nvme
+
+%files -n zsh-completion-nvme-cli
+%defattr(644,root,root,755)
+%{zsh_compdir}/_nvme
