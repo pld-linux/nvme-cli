@@ -78,6 +78,7 @@ CXXFLAGS="${CXXFLAGS:-%rpmcxxflags}" \
 CPPFLAGS="${CPPFLAGS:-%rpmcppflags}" \
 %{?__cc:CC="%{__cc}"} \
 %{?__cxx:CXX="%{__cxx}"} \
+V=1 \
 %{__make}
 
 %install
