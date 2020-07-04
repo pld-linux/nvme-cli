@@ -5,7 +5,7 @@ Version:	1.12
 Release:	1
 License:	GPL v2+
 Group:		Applications
-Source0:	https://github.com/linux-nvme/nvme-cli/archive/v%{version}.tar.gz
+Source0:	https://github.com/linux-nvme/nvme-cli/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	94997b72a63b5bc26c2862c7603bb6e3
 URL:		https://github.com/linux-nvme/nvme-cli
 BuildRequires:	libuuid-devel
