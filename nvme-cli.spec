@@ -25,9 +25,7 @@ Summary(pl.UTF-8):	Obsługa nvmf dla Dracut
 Group:		Applications/System
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	dracut
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description -n dracut-nvmf
 nvmf support for Dracut.
