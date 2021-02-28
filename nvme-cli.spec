@@ -41,9 +41,7 @@ Summary(pl.UTF-8):	Bashowe dopełnianie składni dla nvme-cli
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bash-completion >= 2.0
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n bash-completion-nvme-cli
 bash-completion for nvme-cli.
@@ -56,9 +54,7 @@ Summary:	zsh-completion for nvme-cli
 Summary(pl.UTF-8):	Dopełnianie składni w zsh dla nvme-cli
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n zsh-completion-nvme-cli
 zsh-completion for nvme-cli.
