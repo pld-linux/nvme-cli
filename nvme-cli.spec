@@ -48,7 +48,7 @@ Summary:	bash-completion for nvme-cli
 Summary(pl.UTF-8):	Bashowe dopełnianie składni dla nvme-cli
 Group:		Applications/Shells
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	bash-completion >= 2.0
+Requires:	bash-completion >= 1:2.0
 BuildArch:	noarch
 
 %description -n bash-completion-nvme-cli
