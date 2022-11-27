@@ -1,14 +1,23 @@
 Summary:	NVMe management command line interface
 Summary(pl.UTF-8):	Konsolowy interfejs do zarządzania NVMe
 Name:		nvme-cli
-Version:	1.14
+Version:	2.2.1
 Release:	1
 License:	GPL v2+
 Group:		Applications
 Source0:	https://github.com/linux-nvme/nvme-cli/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a96c8abe7937e603ad5c502641818964
+# Source0-md5:	00e9e1e0ed803db7f458824ccbdf2a5c
 URL:		https://github.com/linux-nvme/nvme-cli
-BuildRequires:	libuuid-devel
+BuildRequires:	asciidoc
+BuildRequires:	json-c-devel >= 0.14
+BuildRequires:	libnvme-devel >= 1.2
+BuildRequires:	meson >= 0.48.0
+BuildRequires:	ninja
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	xmlto
+BuildRequires:	zlib-devel
+Requires:	json-c >= 0.14
+Requires:	libnvme >= 1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		dracutdir	/usr/lib/dracut
@@ -64,25 +73,18 @@ Dopełnianie składni w zsh dla nvme-cli.
 %setup -q
 
 %build
+%meson build \
+	-Dsystemddir=%{systemdunitdir} \
+	-Dudevrulesdir=%{_sysconfdir}/udev/rules.d \
+	-Ddocs=man \
+	-Ddocs-build=true
 
-PREFIX=%{_prefix} \
-LDFLAGS="${LDFLAGS:-%rpmldflags}" \
-CFLAGS="${CFLAGS:-%rpmcflags} -I." \
-CXXFLAGS="${CXXFLAGS:-%rpmcxxflags}" \
-CPPFLAGS="${CPPFLAGS:-%rpmcppflags}" \
-%{?__cc:CC="%{__cc}"} \
-%{?__cxx:CXX="%{__cxx}"} \
-V=1 \
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	PREFIX=%{_prefix} \
-	DESTDIR=$RPM_BUILD_ROOT \
-	DRACUTDIR=%{dracutdir} \
-	SYSTEMDDIR=%{systemdunitdir}/..
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
