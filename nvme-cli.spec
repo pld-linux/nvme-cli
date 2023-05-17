@@ -13,6 +13,7 @@ BuildRequires:	json-c-devel >= 0.14
 BuildRequires:	libnvme-devel >= 1.2
 BuildRequires:	meson >= 0.48.0
 BuildRequires:	ninja
+BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	xmlto
