@@ -1,13 +1,13 @@
 Summary:	NVMe management command line interface
 Summary(pl.UTF-8):	Konsolowy interfejs do zarządzania NVMe
 Name:		nvme-cli
-Version:	2.7
+Version:	2.7.1
 Release:	1
 License:	GPL v2+
 Group:		Applications
 #Source0Download: https://github.com/linux-nvme/nvme-cli/releases
 Source0:	https://github.com/linux-nvme/nvme-cli/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	8f111f6d8c9561013be3ff79863f39e7
+# Source0-md5:	7499fc6c8a0e27e0628ccfd4656d4ee1
 URL:		https://github.com/linux-nvme/nvme-cli
 BuildRequires:	asciidoc
 BuildRequires:	json-c-devel >= 0.14
