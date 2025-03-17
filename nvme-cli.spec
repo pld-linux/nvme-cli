@@ -17,7 +17,7 @@ BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	xmlto
 Requires:	json-c >= 0.14
 Requires:	libnvme >= 1.11
@@ -76,18 +76,18 @@ Dopełnianie składni w zsh dla nvme-cli.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	-Dsystemddir=%{systemdunitdir} \
 	-Dudevrulesdir=%{_sysconfdir}/udev/rules.d \
 	-Ddocs=man \
 	-Ddocs-build=true
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
