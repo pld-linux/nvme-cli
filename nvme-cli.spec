@@ -1,18 +1,18 @@
 Summary:	NVMe management command line interface
 Summary(pl.UTF-8):	Konsolowy interfejs do zarządzania NVMe
 Name:		nvme-cli
-Version:	2.11
+Version:	2.12
 Release:	1
 License:	GPL v2+
 Group:		Applications
 #Source0Download: https://github.com/linux-nvme/nvme-cli/releases
 Source0:	https://github.com/linux-nvme/nvme-cli/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	20a6e85d9a7fd1c2d8f98a41f320a077
+# Source0-md5:	466812854bcfff6be3abb201b12577db
 URL:		https://github.com/linux-nvme/nvme-cli
 BuildRequires:	asciidoc
 BuildRequires:	json-c-devel >= 0.14
 BuildRequires:	linux-libc-headers >= 7:6.6
-BuildRequires:	libnvme-devel >= 1.11
+BuildRequires:	libnvme-devel >= 1.12
 BuildRequires:	meson >= 0.50.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
@@ -20,7 +20,7 @@ BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	xmlto
 Requires:	json-c >= 0.14
-Requires:	libnvme >= 1.11
+Requires:	libnvme >= 1.12
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		dracutdir	/usr/lib/dracut
